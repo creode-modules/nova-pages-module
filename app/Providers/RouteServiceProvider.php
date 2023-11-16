@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
-            ->group(module_path('Pages', '/routes/web.php'));
+            ->group(__DIR__.'/../../routes/web.php');
     }
 
 }
