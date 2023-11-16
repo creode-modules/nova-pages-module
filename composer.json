@@ -39,6 +39,7 @@
     },
     "require": {
         "laravel/nova": "^4.31",
-        "outl1ne/nova-translatable": "^2.2"
+        "outl1ne/nova-translatable": "^2.2",
+        "whitecube/nova-flexible-content": "^1.0"
     }
 }
