@@ -8,6 +8,12 @@
             "email": "contact@creode.co.uk"
         }
     ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "extra": {
         "laravel": {
             "providers": [
@@ -30,5 +36,9 @@
         "psr-4": {
             "Modules\\Pages\\Tests\\": "tests/"
         }
+    },
+    "require": {
+        "laravel/nova": "^4.31",
+        "outl1ne/nova-translatable": "^2.2"
     }
 }
