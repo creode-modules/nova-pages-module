@@ -1,6 +1,7 @@
 {
     "name": "creode/nova-pages",
     "description": "",
+    "type": "laravel-module",
     "authors": [
         {
             "name": "Creode",
