@@ -12,7 +12,7 @@ class PagesServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->loadMigrationsFrom(module_path($this->moduleName, 'database/migrations'));
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 
     public function register(): void
