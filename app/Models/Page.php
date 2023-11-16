@@ -24,6 +24,11 @@ class Page extends Model
         'title',
         'description',
     ];
+
+    public function getContent(): array
+    {
+        return json_decode($this->content, true);
+    }
     
     public static function newFactory(): PageFactory
     {
