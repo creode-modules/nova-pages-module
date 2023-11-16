@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('permalink');
             $table->string('title');
             $table->string('description');
+            $table->longText('content');
             $table->timestamps();
         });
     }

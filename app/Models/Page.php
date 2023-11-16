@@ -17,6 +17,7 @@ class Page extends Model
         'permalink',
         'title',
         'description',
+        'content',
     ];
 
     public $translatable = [
