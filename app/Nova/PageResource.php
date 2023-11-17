@@ -4,11 +4,12 @@ namespace Modules\Pages\app\Nova;
 
 use Laravel\Nova\Resource;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Modules\Pages\app\Models\Page;
+use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Text as TextField;
 use Laravel\Nova\Fields\Textarea as TextareaField;
 use Laravel\Nova\Fields\Boolean as BooleanField;
 use Whitecube\NovaFlexibleContent\Flexible as FlexibleField;
+use Modules\Pages\app\Models\Page;
 use Modules\Pages\app\Events\PageContent as PageContentEvent;
 
 class PageResource extends Resource
@@ -31,9 +32,22 @@ class PageResource extends Resource
         event($pageContentEvent);
 
         return [
-            BooleanField::make('Is homepage'),
+            BooleanField::make(
+                'Is homepage',
+                'is_homepage'
+            ),
             TextField::make('Permalink')
-                ->rules('max:255'),
+                ->rules('max:255')
+                ->dependsOn(
+                    'is_homepage',
+                    function(TextField $field, NovaRequest $request, FormData $formData) {
+                        if($formData->is_homepage) {
+                            $field->hide()->rules('sometimes');
+                        } else {
+                            $field->show()->rules('required');
+                        }
+                    }
+                ),
             TextField::make('Title')
                 ->rules('max:255')
                 ->translatable(),
