@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('is_homepage');
-            $table->string('permalink');
+            $table->string('permalink')->nullable();
             $table->string('title');
             $table->string('description');
             $table->longText('content');
