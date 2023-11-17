@@ -4,6 +4,7 @@ namespace Modules\Pages\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Modules\Pages\app\Models\Page;
+use Modules\Pages\app\Events\PageContentBlockViews as PageContentBlockViewsEvent;
 
 class PagesController extends Controller
 {
@@ -30,7 +31,27 @@ class PagesController extends Controller
 
     protected function render(Page $page)
     {
-        return '<pre>' . print_r($page, true) . '</pre>';
+        $pageContentBlockViewsEvent = new PageContentBlockViewsEvent();
+
+        event($pageContentBlockViewsEvent);
+
+        $content = array_map(
+            function(array $contentBlock) use ($pageContentBlockViewsEvent) {
+                $contentBlock['view'] = $pageContentBlockViewsEvent->views[$contentBlock['layout']];
+
+                return $contentBlock;
+            },
+            $page->getContent()
+        );
+
+        return view(
+            'pages::layout',
+            [
+                'title' => $page->title,
+                'description' => $page->description,
+                'content' => $content,
+            ]
+        );
     }
 
 }

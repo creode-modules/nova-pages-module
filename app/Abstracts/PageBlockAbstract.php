@@ -4,6 +4,7 @@ namespace Modules\Pages\app\Abstracts;
 
 use Illuminate\Support\Facades\Event;
 use Modules\Pages\app\Events\PageContent as PageContentEvent;
+use Modules\Pages\app\Events\PageContentBlockViews as PageContentBlockViewsEvent;
 
 abstract class PageBlockAbstract
 {
@@ -11,16 +12,18 @@ abstract class PageBlockAbstract
     protected $label = '';
     protected $name = '';
     protected $fields = [];
+    protected $view = '';
 
     public function __construct()
     {
-        $this->addFields();
-        $this->addLayout();
+        $this->setFields();
+        $this->registerLayout();
+        $this->registerView();
     }
 
-    abstract protected function addFields();
+    abstract protected function setFields();
 
-    protected function addLayout()
+    private function registerLayout()
     {
         Event::listen(
             function(PageContentEvent $pageContentEvent) {
@@ -29,6 +32,15 @@ abstract class PageBlockAbstract
                     $this->name,
                     $this->fields
                 );
+            }
+        );
+    }
+
+    private function registerView()
+    {
+        Event::listen(
+            function(PageContentBlockViewsEvent $PageContentBlockViewsEvent) {
+                $PageContentBlockViewsEvent->views[$this->name] = $this->view;
             }
         );
     }
