@@ -5,7 +5,7 @@ namespace Modules\Pages\app\Events;
 use Illuminate\Foundation\Events\Dispatchable;
 use Whitecube\NovaFlexibleContent\Flexible as FlexibleField;
 
-class PageContent
+class PageContentEvent
 {
 
     use Dispatchable;

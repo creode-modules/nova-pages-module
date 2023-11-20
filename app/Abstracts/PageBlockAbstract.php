@@ -3,8 +3,8 @@
 namespace Modules\Pages\app\Abstracts;
 
 use Illuminate\Support\Facades\Event;
-use Modules\Pages\app\Events\PageContent as PageContentEvent;
-use Modules\Pages\app\Events\PageContentBlockViews as PageContentBlockViewsEvent;
+use Modules\Pages\app\Events\PageContentEvent;
+use Modules\Pages\app\Events\PageContentBlockViewsEvent;
 
 abstract class PageBlockAbstract
 {

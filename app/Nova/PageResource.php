@@ -10,7 +10,7 @@ use Laravel\Nova\Fields\Textarea as TextareaField;
 use Laravel\Nova\Fields\Boolean as BooleanField;
 use Whitecube\NovaFlexibleContent\Flexible as FlexibleField;
 use Modules\Pages\app\Models\Page;
-use Modules\Pages\app\Events\PageContent as PageContentEvent;
+use Modules\Pages\app\Events\PageContentEvent;
 
 class PageResource extends Resource
 {

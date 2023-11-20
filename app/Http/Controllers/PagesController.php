@@ -4,7 +4,7 @@ namespace Modules\Pages\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Modules\Pages\app\Models\Page;
-use Modules\Pages\app\Events\PageContentBlockViews as PageContentBlockViewsEvent;
+use Modules\Pages\app\Events\PageContentBlockViewsEvent;
 
 class PagesController extends Controller
 {
