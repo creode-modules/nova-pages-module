@@ -21,7 +21,12 @@ abstract class PageBlockAbstract
         $this->registerView();
     }
 
-    abstract protected function setFields();
+    abstract protected function fields();
+
+    private function setFields()
+    {
+        $this->fields = $this->fields();
+    }
 
     private function registerLayout()
     {
