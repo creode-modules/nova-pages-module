@@ -3,7 +3,9 @@
 namespace Modules\Pages\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Modules\Pages\app\Models\Page;
+use Modules\Pages\app\Models\PageContentBlock;
 use Modules\Pages\app\Events\PageContentBlockViewsEvent;
 
 class PagesController extends Controller
@@ -35,13 +37,13 @@ class PagesController extends Controller
 
         event($pageContentBlockViewsEvent);
 
-        $content = array_map(
-            function(array $contentBlock) use ($pageContentBlockViewsEvent) {
-                $contentBlock['view'] = $pageContentBlockViewsEvent->views[$contentBlock['layout']];
-
-                return $contentBlock;
-            },
-            $page->getContent()
+        $content = $page->content->map(
+            function(Layout $layout) use ($pageContentBlockViewsEvent) {
+                return new PageContentBlock(
+                    $pageContentBlockViewsEvent->views[$layout->name()],
+                    json_decode(json_encode($layout->getAttributes()), true)
+                );
+            }
         );
 
         return view(

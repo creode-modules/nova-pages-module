@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    @foreach($content as $contentBlock)
-        @include($contentBlock['view'], $contentBlock['attributes'])
+    @foreach($content as $pageContentBlock)
+        @include($pageContentBlock->view(), $pageContentBlock->attributes())
     @endforeach
 @endsection

@@ -5,6 +5,7 @@ namespace Modules\Pages\app\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Translatable\HasTranslations;
+use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 use Modules\Pages\Database\factories\PageFactory;
 
 class Page extends Model
@@ -25,11 +26,10 @@ class Page extends Model
         'description',
     ];
 
-    public function getContent(): array
-    {
-        return json_decode($this->content, true);
-    }
-    
+    protected $casts = [
+        'content' => FlexibleCast::class
+    ];
+
     public static function newFactory(): PageFactory
     {
         return PageFactory::new();
