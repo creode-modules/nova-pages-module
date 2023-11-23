@@ -2,10 +2,11 @@
 
 namespace Modules\Pages\app\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
+use Illuminate\Http\Request;
 use Modules\Pages\app\Models\Page;
+use App\Http\Controllers\Controller;
 use Modules\Pages\app\Models\PageContentBlock;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Modules\Pages\app\Events\PageContentBlockViewsEvent;
 
 class PagesController extends Controller
@@ -15,16 +16,21 @@ class PagesController extends Controller
     {
         $page = Page::firstWhere('is_homepage', 1);
 
-        if(!$page){
+        if (!$page) {
             abort(404);
         }
 
         return $this->render($page);
     }
 
-    public function show(Page $page)
+    public function show(Request $request)
     {
-        if($page->is_homepage) {
+        $page = Page::firstWhere('permalink', $request->path());
+        if (!$page) {
+            abort(404);
+        }
+
+        if ($page->is_homepage) {
             abort(404);
         }
 
