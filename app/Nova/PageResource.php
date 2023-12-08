@@ -25,6 +25,9 @@ class PageResource extends Resource
     public function fields(NovaRequest $request)
     {
         $content = FlexibleField::make('Content')
+            ->onlyOnForms()
+            ->fullWidth()
+            ->collapsed()
             ->button('Add Block');
 
         $pageContentEvent = new PageContentEvent($content);
