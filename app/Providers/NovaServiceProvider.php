@@ -8,7 +8,6 @@ use Modules\Pages\app\Nova\PageResource;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
-
     public function boot(): void
     {
         $this->registerResources();
@@ -22,5 +21,4 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             ]
         );
     }
-
 }

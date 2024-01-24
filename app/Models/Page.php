@@ -27,7 +27,7 @@ class Page extends Model
     ];
 
     protected $casts = [
-        'content' => FlexibleCast::class
+        'content' => FlexibleCast::class,
     ];
 
     public static function newFactory(): PageFactory
