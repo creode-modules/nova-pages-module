@@ -1,1 +1,1 @@
-@include('page-builder::content', ['content' => $content])
+@include('page-builder::components', ['components' => $content])
