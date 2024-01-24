@@ -2,6 +2,7 @@
 
 namespace Modules\Pages\app\Nova;
 
+use Creode\NovaPageBuilder\Nova\Fields\PageBuilder;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\FormData;
@@ -23,16 +24,6 @@ class PageResource extends Resource
 
     public function fields(NovaRequest $request)
     {
-        $content = FlexibleField::make('Content')
-            ->onlyOnForms()
-            ->fullWidth()
-            ->collapsed()
-            ->button('Add Block');
-
-        $pageContentEvent = new PageContentEvent($content);
-
-        event($pageContentEvent);
-
         return [
             BooleanField::make(
                 'Is homepage',
@@ -55,7 +46,8 @@ class PageResource extends Resource
                 ->translatable(),
             TextareaField::make('Description')
                 ->translatable(),
-            $pageContentEvent->content,
+            PageBuilder::make('Content')
+                ->hideFromIndex(),
         ];
     }
 }
