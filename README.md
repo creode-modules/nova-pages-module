@@ -19,14 +19,9 @@ This module contains database migrations. You can run the migrations with:
 php artisan migrate
 ```
 
-You can publish the config file with:
+## Publishing Views
+You can publish the view this module uses to customise the main page template using:
 
 ```bash
-php artisan vendor:publish --tag="pages-config"
+php artisan vendor:publish --tag="pages-views"
 ```
-
-## Extension
-
-As previously stated, this module will not define any format of page content. However it does contain the infrastructure for defining content blocks with minimal code. To define a new content block you will need to define an extension of the Modules\Pages\app\Abstracts\PageBlockAbstract class. Your new class should then be instantiated within the boot method of a service provider.
-
-As part of your new class, you must define a "$label" string property. This will be the human readable representation of your new content block. You must define a "$name" string property. This will be how Laravel will reference your content block. You must define a "$view" string property. This should reference a view file containing markup and/or template logic for rendering your block on front-end pages. You must define a "fields" method. This should return an array of Laravel Nova field objects.
