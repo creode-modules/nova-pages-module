@@ -13,21 +13,12 @@ class PagesServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'pages');
-
-        $this->publishes(
-            [
-                __DIR__.'/../../config/config.php' => config_path('pages.php'),
-            ],
-            'pages-config'
-        );
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', $this->moduleNameLower);
     }
 
     public function register(): void
     {
         $this->app->register(NovaServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
-        $this->mergeConfigFrom(__DIR__.'/../../config/config.php', 'pages');
     }
-
 }
