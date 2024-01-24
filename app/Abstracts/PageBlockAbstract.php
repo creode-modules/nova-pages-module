@@ -6,6 +6,12 @@ use Illuminate\Support\Facades\Event;
 use Modules\Pages\app\Events\PageContentEvent;
 use Modules\Pages\app\Events\PageContentBlockViewsEvent;
 
+/**
+ * This class is deprecated and will be removed in a future release.
+ * Please use the nova-page-builder package instead.
+ *
+ * @deprecated 1.0.4
+ */
 abstract class PageBlockAbstract
 {
 

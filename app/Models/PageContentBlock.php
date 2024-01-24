@@ -2,6 +2,12 @@
 
 namespace Modules\Pages\app\Models;
 
+/**
+ * This class is deprecated and will be removed in a future release.
+ * Please use the nova-page-builder package instead.
+ *
+ * @deprecated 1.0.4
+ */
 class PageContentBlock
 {
 
