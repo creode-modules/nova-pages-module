@@ -14,7 +14,6 @@ use Modules\Pages\app\Events\PageContentEvent;
 
 class PageResource extends Resource
 {
-
     public static $model = Page::class;
 
     public static function label()
@@ -43,8 +42,8 @@ class PageResource extends Resource
                 ->rules('max:255')
                 ->dependsOn(
                     'is_homepage',
-                    function(TextField $field, NovaRequest $request, FormData $formData) {
-                        if($formData->is_homepage) {
+                    function (TextField $field, NovaRequest $request, FormData $formData) {
+                        if ($formData->is_homepage) {
                             $field->hide()->rules('sometimes');
                         } else {
                             $field->show()->rules('required');
@@ -59,5 +58,4 @@ class PageResource extends Resource
             $pageContentEvent->content,
         ];
     }
-
 }
