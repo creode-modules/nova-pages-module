@@ -5,12 +5,14 @@ namespace Modules\Pages\app\Http\Controllers;
 use Illuminate\Http\Request;
 use Modules\Pages\app\Models\Page;
 use App\Http\Controllers\Controller;
-use Modules\Pages\app\Models\PageContentBlock;
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Modules\Pages\app\Events\PageContentBlockViewsEvent;
+use Creode\NovaPageBuilder\Services\BlockRenderer;
 
 class PagesController extends Controller
 {
+
+    public function __construct(protected BlockRenderer $blockRenderer)
+    {
+    }
 
     public function home()
     {
@@ -39,18 +41,7 @@ class PagesController extends Controller
 
     protected function render(Page $page)
     {
-        $pageContentBlockViewsEvent = new PageContentBlockViewsEvent();
-
-        event($pageContentBlockViewsEvent);
-
-        $content = $page->content->map(
-            function (Layout $layout) use ($pageContentBlockViewsEvent) {
-                return new PageContentBlock(
-                    $pageContentBlockViewsEvent->views[$layout->name()],
-                    json_decode(json_encode($layout->getAttributes()), true)
-                );
-            }
-        );
+        $content = $this->blockRenderer->render($page->content);
 
         return view(
             'pages::page',
