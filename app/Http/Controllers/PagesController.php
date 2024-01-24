@@ -44,7 +44,7 @@ class PagesController extends Controller
         event($pageContentBlockViewsEvent);
 
         $content = $page->content->map(
-            function(Layout $layout) use ($pageContentBlockViewsEvent) {
+            function (Layout $layout) use ($pageContentBlockViewsEvent) {
                 return new PageContentBlock(
                     $pageContentBlockViewsEvent->views[$layout->name()],
                     json_decode(json_encode($layout->getAttributes()), true)
@@ -61,5 +61,4 @@ class PagesController extends Controller
             ]
         );
     }
-
 }

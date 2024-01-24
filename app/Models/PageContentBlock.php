@@ -23,5 +23,4 @@ class PageContentBlock
     {
         return $this->attributes;
     }
-
 }
