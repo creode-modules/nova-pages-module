@@ -53,7 +53,7 @@ class PagesController extends Controller
         );
 
         return view(
-            'pages::layout',
+            'pages::page',
             [
                 'title' => $page->title,
                 'description' => $page->description,
