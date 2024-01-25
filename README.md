@@ -15,6 +15,13 @@ This module contains database migrations. You can run the migrations with:
 php artisan migrate
 ```
 
+## Publishing Config
+You can publish the config this module exposes to customise options using:
+
+```bash
+php artisan vendor:publish --tag="pages-config"
+```
+
 ## Publishing Views
 You can publish the view this module uses to customise the main page template using:
 

@@ -47,7 +47,7 @@ class PageResource extends Resource
             TextareaField::make('Description')
                 ->translatable(),
             PageBuilder::make('Content')
-                ->hideFromIndex(),
+                ->exclude(config('pages.excluded_blocks', ['banner'])),
         ];
     }
 }

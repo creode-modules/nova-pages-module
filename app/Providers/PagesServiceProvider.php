@@ -18,11 +18,20 @@ class PagesServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../resources/views' => resource_path('views/vendor/pages'),
         ], 'pages-views');
+
+        $this->publishes(
+            [
+                __DIR__.'/../../config/config.php' => config_path('pages.php'),
+            ],
+            'pages-config'
+        );
     }
 
     public function register(): void
     {
         $this->app->register(NovaServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+
+        $this->mergeConfigFrom(__DIR__.'/../../config/config.php', 'pages');
     }
 }
