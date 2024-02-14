@@ -6,17 +6,18 @@ use Illuminate\Http\Request;
 use Modules\Pages\app\Models\Page;
 use App\Http\Controllers\Controller;
 use Creode\NovaPageBuilder\Services\BlockRenderer;
+use Modules\Pages\app\Repositories\PageRepository;
 
 class PagesController extends Controller
 {
 
-    public function __construct(protected BlockRenderer $blockRenderer)
+    public function __construct(protected BlockRenderer $blockRenderer, protected PageRepository $pageRepository)
     {
     }
 
     public function home()
     {
-        $page = Page::firstWhere('is_homepage', 1);
+        $page = $this->pageRepository->firstWhere('is_homepage', 1);
 
         if (!$page) {
             abort(404);
@@ -27,7 +28,7 @@ class PagesController extends Controller
 
     public function show(Request $request)
     {
-        $page = Page::firstWhere('permalink', $request->path());
+        $page = $this->pageRepository->firstWhere('permalink', $request->path());
         if (!$page) {
             abort(404);
         }

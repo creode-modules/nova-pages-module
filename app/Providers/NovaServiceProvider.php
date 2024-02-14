@@ -15,6 +15,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
     protected function registerResources()
     {
+        PageResource::$model = config('pages.pages_model', \Modules\Pages\app\Models\Page::class);
         Nova::resources(
             [
                 PageResource::class
