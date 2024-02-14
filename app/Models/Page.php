@@ -15,6 +15,13 @@ class Page extends Model
     use HasTranslations;
     use Publishable;
 
+    /**
+     * Sets table property so that extended models don't need to define it.
+     *
+     * @var string
+     */
+    protected $table = 'pages';
+
     protected $fillable = [
         'is_homepage',
         'permalink',
