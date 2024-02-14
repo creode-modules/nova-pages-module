@@ -1,6 +1,5 @@
 <?php
 
-use Modules\Pages\app\Models\Page;
 use Illuminate\Support\Facades\Route;
 use Modules\Pages\app\Http\Controllers\PagesController;
 
