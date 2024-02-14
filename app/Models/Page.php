@@ -3,15 +3,17 @@
 namespace Modules\Pages\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use PawelMysior\Publishable\Publishable;
 use Spatie\Translatable\HasTranslations;
-use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 use Modules\Pages\Database\factories\PageFactory;
+use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Page extends Model
 {
     use HasFactory;
     use HasTranslations;
+    use Publishable;
 
     protected $fillable = [
         'is_homepage',
