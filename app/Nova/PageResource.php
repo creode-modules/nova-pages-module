@@ -3,15 +3,14 @@
 namespace Modules\Pages\app\Nova;
 
 use Creode\NovaPageBuilder\Nova\Fields\PageBuilder;
+use Creode\NovaPublishable\Published;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Text as TextField;
 use Laravel\Nova\Fields\Textarea as TextareaField;
 use Laravel\Nova\Fields\Boolean as BooleanField;
-use Whitecube\NovaFlexibleContent\Flexible as FlexibleField;
 use Modules\Pages\app\Models\Page;
-use Modules\Pages\app\Events\PageContentEvent;
 
 class PageResource extends Resource
 {
@@ -29,6 +28,7 @@ class PageResource extends Resource
                 'Is homepage',
                 'is_homepage'
             ),
+            Published::make('Published', 'published_at'),
             TextField::make('Permalink')
                 ->rules('max:255')
                 ->dependsOn(
