@@ -17,7 +17,7 @@ class PagesController extends Controller
 
     public function home()
     {
-        $page = $this->pageRepository->firstWhere('is_homepage', 1);
+        $page = $this->pageRepository->published()->firstWhere('is_homepage', 1);
 
         if (!$page) {
             abort(404);
@@ -28,7 +28,7 @@ class PagesController extends Controller
 
     public function show(Request $request)
     {
-        $page = $this->pageRepository->firstWhere('permalink', $request->path());
+        $page = $this->pageRepository->published()->firstWhere('permalink', $request->path());
         if (!$page) {
             abort(404);
         }
