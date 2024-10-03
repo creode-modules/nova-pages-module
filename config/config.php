@@ -26,6 +26,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Pages Resource
+    |--------------------------------------------------------------------------
+    |
+    | This is the resource class which will be used when showing pages.
+    |
+    */
+    'page_resource' => \Modules\Pages\app\Nova\PageResource::class,
+
+    /*
+    |--------------------------------------------------------------------------
     | Traffic Cop
     |--------------------------------------------------------------------------
     |
@@ -33,6 +43,6 @@ return [
     | and updating a resource.
     |
     */
-    
+
     'traffic_cop' => true,
 ];

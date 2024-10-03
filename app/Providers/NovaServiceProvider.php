@@ -19,7 +19,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         PageResource::$trafficCop = config('pages.traffic_cop');
         Nova::resources(
             [
-                PageResource::class
+                config('pages.page_resource', PageResource::class),
             ]
         );
     }
