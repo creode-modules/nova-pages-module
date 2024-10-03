@@ -3,6 +3,8 @@
 namespace Modules\Pages\app\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Pages\app\Contracts\BeforePageRenderMiddleware;
+use Modules\Pages\app\Http\Middleware\BeforePageRenderMiddleware as BeforePageRender;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,8 @@ class PagesServiceProvider extends ServiceProvider
     {
         $this->app->register(NovaServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+
+        $this->app->bind(BeforePageRenderMiddleware::class, BeforePageRender::class);
 
         $this->mergeConfigFrom(__DIR__.'/../../config/config.php', 'pages');
     }
